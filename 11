@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Actualizar la lista de paquetes
+sudo apt update
+
+# Instalar paquetes esenciales
+sudo apt install -y nmap nano sudo systemd openssh-server net-tools iproute2 curl wget
+
+# Habilitar y iniciar el servicio SSH
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
+# Verificar la instalación de los paquetes
+echo "Verificando la instalación de los paquetes..."
+
+command -v nmap >/dev/null 2>&1 && echo "nmap está instalado" || echo "nmap no está instalado"
+command -v nano >/dev/null 2>&1 && echo "nano está instalado" || echo "nano no está instalado"
+command -v sudo >/dev/null 2>&1 && echo "sudo está instalado" || echo "sudo no está instalado"
+command -v systemctl >/dev/null 2>&1 && echo "systemctl está instalado" || echo "systemctl no está instalado"
+command -v sshd >/dev/null 2>&1 && echo "openssh-server está instalado" || echo "openssh-server no está instalado"
+command -v ifconfig >/dev/null 2>&1 && echo "net-tools (ifconfig) está instalado" || echo "net-tools (ifconfig) no está instalado"
+command -v ip >/dev/null 2>&1 && echo "iproute2 (ip) está instalado" || echo "iproute2 (ip) no está instalado"
+command -v curl >/dev/null 2>&1 && echo "curl está instalado" || echo "curl no está instalado"
+command -v wget >/dev/null 2>&1 && echo "wget está instalado" || echo "wget no está instalado"
+
+# Mostrar las interfaces de red
+echo "Mostrando interfaces de red..."
+ip a
+ifconfig
